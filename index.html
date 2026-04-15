@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر عمر | Omar Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* إعدادات الخطوط والألوان العامة */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap');
+
+        :root {
+            --primary-color: #ff8c00; /* برتقالي إبداعي */
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-light: #ffffff;
+            --text-gray: #b3b3b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* الهيدر (القائمة العلوية) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(18, 18, 18, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* قسم الترحيب (Hero Section) */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to left, #ff8c00, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        .btn-shop {
+            padding: 12px 40px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.4s;
+            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
+        }
+
+        .btn-shop:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(255, 140, 0, 0.5);
+        }
+
+        /* قسم المنتجات */
+        .products {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.4s;
+            border: 1px solid #333;
+        }
+
+        .product-card:hover {
+            transform: scale(1.03);
+            border-color: var(--primary-color);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            background: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-img i {
+            font-size: 4rem;
+            color: var(--primary-color);
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .price {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #333;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary-color);
+        }
+
+        /* الفوتر (أسفل الموقع) */
+        footer {
+            background: #000;
+            padding: 40px 8%;
+            text-align: center;
+            border-top: 1px solid #333;
+            margin-top: 50px;
+        }
+
+        .social-links i {
+            font-size: 1.5rem;
+            margin: 0 15px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .social-links i:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">عمر STORE</div>
+        <nav>
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">المنتجات</a></li>
+                <li><a href="#">من نحن</a></li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i> السلة</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>عالم الفخامة بين يديك</h1>
+        <p>متجر عمر يقدم لك أحدث المنتجات العالمية بجودة استثنائية وتصاميم تليق بذوقك الرفيع.</p>
+        <a href="#" class="btn-shop">تسوق الآن</a>
+    </section>
+
+    <section class="products">
+        <h2 class="section-title">أحدث المنتجات</h2>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img"><i class="fas fa-mobile-alt"></i></div>
+                <div class="product-info">
+                    <h3>هاتف ذكي X1</h3>
+                    <span class="price">2,500 ريال</span>
+                    <button class="add-to-cart">أضف للسلة</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><i class="fas fa-laptop"></i></div>
+                <div class="product-info">
+                    <h3>لابتوب برو مكس</h3>
+                    <span class="price">5,200 ريال</span>
+                    <button class="add-to-cart">أضف للسلة</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><i class="fas fa-headphones"></i></div>
+                <div class="product-info">
+                    <h3>سماعات محيطية</h3>
+                    <span class="price">450 ريال</span>
+                    <button class="add-to-cart">أضف للسلة</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><i class="fas fa-watch"></i></div>
+                <div class="product-info">
+                    <h3>ساعة ذكية S5</h3>
+                    <span class="price">890 ريال</span>
+                    <button class="add-to-cart">أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-snapchat"></i>
+        </div>
+        <p class="copyright">جميع الحقوق محفوظة © لمتجر عمر 2024</p>
+    </footer>
+
+</body>
+</html>
